@@ -112,19 +112,25 @@ declare namespace Resumable {
     /**
      * The minimum allowed file size. (Default: undefined)
      **/
-    minFileSize?: boolean;
+    minFileSize?: number;
     /**
      * A function which displays an error a selected file is smaller than allowed. (Default: displays an alert for every bad file.)
      **/
-    minFileSizeErrorCallback?: (file: ResumableFile, errorCount: number) => void;
+    minFileSizeErrorCallback?: (
+      file: ResumableFile,
+      errorCount: number
+    ) => void;
     /**
      * The maximum allowed file size. (Default: undefined)
      **/
-    maxFileSize?: boolean;
+    maxFileSize?: number;
     /**
      * A function which displays an error a selected file is larger than allowed. (Default: displays an alert for every bad file.)
      **/
-    maxFileSizeErrorCallback?: (file: ResumableFile, errorCount: number) => void;
+    maxFileSizeErrorCallback?: (
+      file: ResumableFile,
+      errorCount: number
+    ) => void;
     /**
      * The file types allowed to upload. An empty array allow any file type. (Default: [])
      **/
@@ -221,85 +227,100 @@ declare namespace Resumable {
     getOpt(o: string): any;
 
     // Events
-  /**
-   * Change event handler
-   **/
+    /**
+     * Change event handler
+     **/
     handleChangeEvent(e: Event): void;
 
     /**
-    * Drop event handler
-    **/
+     * Drop event handler
+     **/
     handleDropEvent(e: Event): void;
 
     /**
      *  A specific file was completed.
      **/
-    on(event: 'fileSuccess', callback: (file: ResumableFile) => void): void;
+    on(event: "fileSuccess", callback: (file: ResumableFile) => void): void;
     /**
      *  Uploading progressed for a specific file.
      **/
-    on(event: 'fileProgress', callback: (file: ResumableFile) => void): void;
+    on(event: "fileProgress", callback: (file: ResumableFile) => void): void;
     /**
      *  A new file was added. Optionally, you can use the browser event object from when the file was added.
      **/
-    on(event: 'fileAdded', callback: (file: ResumableFile, event: DragEvent) => void): void;
+    on(
+      event: "fileAdded",
+      callback: (file: ResumableFile, event: DragEvent) => void
+    ): void;
     /**
      *  New files were added.
      **/
-    on(event: 'filesAdded', callback: (files: ResumableFile[]) => void): void;
+    on(event: "filesAdded", callback: (files: ResumableFile[]) => void): void;
     /**
      *  Something went wrong during upload of a specific file, uploading is being retried.
      **/
-    on(event: 'fileRetry', callback: (file: ResumableFile) => void): void;
+    on(event: "fileRetry", callback: (file: ResumableFile) => void): void;
     /**
      *  An error occurred during upload of a specific file.
      **/
-    on(event: 'fileError', callback: (file: ResumableFile, message: string) => void): void;
+    on(
+      event: "fileError",
+      callback: (file: ResumableFile, message: string) => void
+    ): void;
     /**
      *  Upload has been started on the Resumable object.
      **/
-    on(event: 'uploadStart', callback: () => void): void;
+    on(event: "uploadStart", callback: () => void): void;
     /**
      *  Uploading completed.
      **/
-    on(event: 'complete', callback: () => void): void;
+    on(event: "complete", callback: () => void): void;
     /**
      *  Uploading progress.
      **/
-    on(event: 'progress', callback: () => void): void;
+    on(event: "progress", callback: () => void): void;
     /**
      *  An error, including fileError, occurred.
      **/
-    on(event: 'error', callback: (message: string, file: ResumableFile) => void): void;
+    on(
+      event: "error",
+      callback: (message: string, file: ResumableFile) => void
+    ): void;
     /**
      *  Uploading was paused.
      **/
-    on(event: 'pause', callback: () => void): void;
+    on(event: "pause", callback: () => void): void;
     /**
      *  Triggers before the items are cancelled allowing to do any processing on uploading files.
      **/
-    on(event: 'beforeCancel', callback: () => void): void;
+    on(event: "beforeCancel", callback: () => void): void;
     /**
      *  Uploading was canceled.
      **/
-    on(event: 'cancel', callback: () => void): void;
+    on(event: "cancel", callback: () => void): void;
     /**
      *  Started preparing file for upload
      **/
-    on(event: 'chunkingStart', callback: (file: ResumableFile) => void): void;
+    on(event: "chunkingStart", callback: (file: ResumableFile) => void): void;
     /**
      *  Show progress in file preparation
      **/
-    on(event: 'chunkingProgress', callback: (file: ResumableFile, ratio: number) => void): void;
+    on(
+      event: "chunkingProgress",
+      callback: (file: ResumableFile, ratio: number) => void
+    ): void;
     /**
      *  File is ready for upload
      **/
-    on(event: 'chunkingComplete', callback: (file: ResumableFile) => void): void;
+    on(
+      event: "chunkingComplete",
+      callback: (file: ResumableFile) => void
+    ): void;
     /**
      * Listen to all the events listed above with the same callback function.
      **/
-    on(event: 'catchAll', callback: () => void): void;
-  /**
+    on(event: "catchAll", callback: () => void): void;
+    /**
      * Listen for event from Resumable.js (see below)
      **/
     on(event: string, callback: Function): void;
@@ -335,7 +356,6 @@ declare namespace Resumable {
      **/
     chunks: ResumableChunk[];
 
-
     /**
      * Returns a float between 0 and 1 indicating the current upload progress of the file. If relative is true, the value is returned relative to all files in the Resumable.js instance.
      **/
@@ -366,9 +386,9 @@ declare namespace Resumable {
     isComplete: () => boolean;
   }
 
-  interface ResumableChunk { }
+  interface ResumableChunk {}
 }
 
-declare module 'resumablejs' {
+declare module "resumablejs" {
   export = Resumable;
 }
